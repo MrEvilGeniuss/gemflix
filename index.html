@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix India – Watch TV Shows Online, Watch Movies Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS RESET & GLOBAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+        }
+
+        h2 {
+            font-size: 1.625rem;
+            font-weight: 400;
+        }
+        
+        h3 {
+             font-size: 1.25rem;
+             font-weight: 400;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* UTILITY */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-red {
+            background-color: #e50914;
+            color: #fff;
+        }
+
+        .btn-red-lg {
+            background-color: #e50914;
+            color: #fff;
+            font-size: 1.625rem;
+            padding: 0.9rem 2rem;
+        }
+
+        .section-divider {
+            height: 8px;
+            background-color: #222;
+            border: none;
+        }
+        
+        /* HEADER */
+        .main-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 10;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 140px;
+            fill: #e50914; /* SVG color */
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 700px;
+            background: url('https://assets.nflxext.com/ffe/siteui/vlv3/d1532433-07b1-4e9b-a920-3608951d4269/750c78a0-b856-47a8-9166-515764de3911/IN-en-20231120-popsignuptwoweeks-perspective_alpha_website_large.jpg') center center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1, .hero-content h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .email-form {
+            margin-top: 1.5rem;
+        }
+        
+        .email-form p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .form-container input[type="email"] {
+            width: 450px;
+            padding: 1rem;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #555;
+            border-radius: 0.25rem;
+            color: #fff;
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            padding: 4.5rem 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .feature-card {
+             padding: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-card p {
+            font-size: 1.2rem;
+        }
+        
+        /* FAQ SECTION */
+        .faq {
+            padding: 4.5rem 0;
+            text-align: center;
+        }
+        
+        .faq h1 {
+            margin-bottom: 2.5rem;
+        }
+
+        .faq-list {
+            max-width: 815px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            margin-bottom: 8px;
+        }
+
+        .faq-question {
+            background-color: #303030;
+            padding: 1.5rem;
+            font-size: 1.625rem;
+            cursor: pointer;
+            position: relative;
+            border: 0;
+            width: 100%;
+            text-align: left;
+            color: #fff;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 2.5rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.25s ease;
+        }
+
+        .faq-answer {
+            background-color: #303030;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+        }
+        
+        .faq-answer p {
+            padding: 1.5rem;
+            font-size: 1.625rem;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 1200px; /* Set to a large enough value */
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .faq .email-form {
+            margin-top: 3rem;
+        }
+        
+        /* FOOTER */
+        .main-footer {
+            padding: 4.5rem 0 2rem 0;
+            color: #737373;
+        }
+        
+        .main-footer .container {
+            max-width: 1000px;
+        }
+
+        .main-footer p {
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-grid a {
+            color: #737373;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .footer-grid a:hover {
+            text-decoration: underline;
+        }
+        
+        .main-footer .copyright-text {
+            font-size: 0.875rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <svg viewBox="0 0 111 30" fill="currentColor">
+                    <path d="M105.062 14.288c-1.71-.28-3.329-.52-4.83-.715L91.63 1.947c-2.434-1.217-4.83-1.84-7.348-1.84-2.825 0-5.46.68-7.734 2.05-2.275 1.37-4.043 3.32-5.267 5.824-1.223 2.506-1.84 5.34-1.84 8.415s.616 5.91 1.84 8.415c1.224 2.504 2.992 4.454 5.267 5.824 2.274 1.37 4.91 2.05 7.734 2.05 2.518 0 4.914-.623 7.348-1.84l8.602-11.642c1.502-.195 3.12-.435 4.83-.715v-8.228zM89.26 21.053c-1.06.435-2.235.65-3.526.65-1.42 0-2.734-.33-3.909-1s-2.18-1.64-2.946-2.88c-.767-1.24-1.14-2.73-1.14-4.43s.373-3.19 1.14-4.43c.766-1.24 1.77-2.18 2.946-2.88 1.176-.7 2.49-1 3.91-1 1.29 0 2.464.215 3.525.65v13.32zM63.882 28.75v-27.5h-9.25V28.75h9.25zM48.818 1.25h-9.25V28.75h9.25V1.25zM22.95 1.25h-9.25V28.75h9.25V1.25zM39.313 15c0-3.32-.48-6.19-1.448-8.62C36.896 4.02 35.13 2.5 32.744 1.25H24.31v27.5h9.25v-9.32c.623 1.217 1.352 2.14 2.18 2.77 1.155.88 2.42 1.32 3.79 1.32 1.48 0 2.76-.434 3.84-1.31s1.82-2.13 2.22-3.75c.4-1.62.6-3.48.6-5.58zm-9.25 0c0 1.29-.14 2.43-.434 3.43-.294 1-.7 1.78-1.224 2.34-.523.56-1.155.84-1.895.84-.74 0-1.37-.28-1.896-.84-.524-.56-.934-1.34-1.224-2.34-.29-.99-.435-2.13-.435-3.43s.145-2.44.435-3.43c.29-.99.7-1.78 1.224-2.34.523-.56 1.155-.84 1.896-.84.74 0 1.37.28 1.895.84.523.56.93 1.34 1.224 2.34.293 1 .434 2.14.434 3.43zM0 1.25h9.25v27.5H0V1.25z"/>
+                </svg>
+            </div>
+            <a href="#" class="btn btn-red">Sign In</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Unlimited movies, TV shows and more</h1>
+                <h2>Starts at ₹149. Cancel at any time.</h2>
+                <div class="email-form">
+                    <p>Ready to watch? Enter your email to create or restart your membership.</p>
+                    <div class="form-container">
+                        <input type="email" placeholder="Email address">
+                        <button type="submit" class="btn btn-red-lg">Get Started &gt;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section class="features">
+             <div class="container">
+                <h2>More reasons to join</h2>
+                <br>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Enjoy on your TV</h3>
+                        <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Download your shows to watch offline</h3>
+                        <p>Save your favourites easily and always have something to watch.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Watch everywhere</h3>
+                        <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Create profiles for kids</h3>
+                        <p>Send children on adventures with their favourite characters in a space made just for them—free with your membership.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section class="faq">
+            <div class="container">
+                <h1>Frequently Asked Questions</h1>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <button class="faq-question">What is Netflix?</button>
+                        <div class="faq-answer">
+                            <p>Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more – on thousands of internet-connected devices. <br><br> You can watch as much as you want, whenever you want, without a single ad – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!</p>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question">How much does Netflix cost?</button>
+                        <div class="faq-answer">
+                            <p>Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from ₹149 to ₹649 a month. No extra costs, no contracts.</p>
+                        </div>
+                    </li>
+                     <li class="faq-item">
+                        <button class="faq-question">Where can I watch?</button>
+                        <div class="faq-answer">
+                           <p>Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device that offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.<br><br>You can also download your favourite shows with the iOS, Android, or Windows 10 app. Use downloads to watch while you're on the go and without an internet connection. Take Netflix with you anywhere.</p>
+                        </div>
+                    </li>
+                     <li class="faq-item">
+                        <button class="faq-question">How do I cancel?</button>
+                        <div class="faq-answer">
+                           <p>Netflix is flexible. There are no annoying contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime.</p>
+                        </div>
+                    </li>
+                     <li class="faq-item">
+                        <button class="faq-question">What can I watch on Netflix?</button>
+                        <div class="faq-answer">
+                           <p>Netflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Netflix originals, and more. Watch as much as you want, anytime you want.</p>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question">Is Netflix good for kids?</button>
+                        <div class="faq-answer">
+                            <p>The Netflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and films in their own space.<br><br>Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see.</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="email-form">
+                    <p>Ready to watch? Enter your email to create or restart your membership.</p>
+                    <div class="form-container">
+                        <input type="email" placeholder="Email address">
+                        <button type="submit" class="btn btn-red-lg">Get Started &gt;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>Questions? Call <a href="tel:000-800-919-1743">000-800-919-1743</a></p>
+            <div class="footer-grid">
+                <a href="#">FAQ</a>
+                <a href="#">Help Centre</a>
+                <a href="#">Account</a>
+                <a href="#">Media Centre</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Jobs</a>
+                <a href="#">Ways to Watch</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy</a>
+                <a href="#">Cookie Preferences</a>
+                <a href="#">Corporate Information</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Speed Test</a>
+                <a href="#">Legal Notices</a>
+                <a href="#">Only on Netflix</a>
+            </div>
+            <p class="copyright-text">Netflix India</p>
+        </div>
+    </footer>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // First, close all other active items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Then, toggle the current item
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
